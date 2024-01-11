@@ -141,7 +141,7 @@ function createForm() {
 
     // Form HTML
     formContainer.innerHTML = `
-        <p>How many buttons to create? (Minimum 3, Maximum 7)</p>
+        <p>How many buttons to create?</p>
         <form id="buttonForm">
             <input type="text" id="numButtons">
             <input type="submit" value="Go!" id="submitButton">
