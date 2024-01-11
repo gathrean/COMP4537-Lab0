@@ -11,20 +11,20 @@ class Button {
 
         // Number passed to constructor is displayed on the button.
         this.number = number;
-        
+
         // HTML element
         this.element = document.createElement('button');
 
         // All buttons will have the same width and height.
         this.element.style.width = '10em';
         this.element.style.height = '5em';
-        
+
         // Random color for each button.
         this.element.style.backgroundColor = this.getRandomColor();
 
         // Button's text will be the number.
         this.element.textContent = number;
-        
+
         this.element.classList.add('gameButton');
 
         // Event listener for button click.
@@ -176,3 +176,20 @@ function render() {
 
 // When the DOM is loaded, render the form
 document.addEventListener('DOMContentLoaded', render);
+
+
+/** Lab Notes
+ * 
+    separete clas button and game class
+    constructor receive color as an input, dont wanna change color throughout the game
+    pass parma that represent as color for that button
+    button class had method like move and that gets x ,y
+    x y moves button around
+
+    big game class is respinsible for generating those buttons
+    array loopruns across all the buttons and call move method
+
+    loop instantiate n buttons from that class
+    
+    start game, game over, display message, methods
+ */
