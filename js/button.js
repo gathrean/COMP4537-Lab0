@@ -25,6 +25,9 @@ class Button {
 
         // Random color for each button.
         this.element.style.backgroundColor = this.getRandomColor();
+
+        // Event listener for button click.
+        this.element.addEventListener('click', this.onClick.bind(this));
     }
 
     /**
@@ -33,7 +36,7 @@ class Button {
      */
     getRandomColor() {
         const letters = '0123456789ABCDEF'; // HEX digits to randomize the color codes
-        
+
         // Program uses the Math.random for generating the 6-digit code.
         let color = '#';
         for (let i = 0; i < 6; i++) {
@@ -42,7 +45,26 @@ class Button {
 
         return color;
     }
+
+    /**
+     * Event Listener for the button when it's clicked.
+     */
+    onClick() {
+        if (this.number === Button.nextExpected) {
+            this.element.textContent = this.number;
+            Button.nextExpected++;
+
+            if (Button.nextExpected > Button.buttonsCount) {
+                alert(excellentMemoryAlert)
+            }
+        } else {
+            alert(wrongOrderAlert);
+        }
+    }
 }
+
+Button.nextExpected = 1;
+Button.buttons = []; // Array of buttons
 
 function createForm() {
     const formContainer = document.createElement('div');
