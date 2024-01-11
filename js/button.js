@@ -11,20 +11,21 @@ class Button {
 
         // Number passed to constructor is displayed on the button.
         this.number = number;
-        this.element.textContent = number;
-
+        
         // HTML element
         this.element = document.createElement('button');
 
         // All buttons will have the same width and height.
         this.element.style.width = '10em';
         this.element.style.height = '5em';
+        
+        // Random color for each button.
+        this.element.style.backgroundColor = this.getRandomColor();
 
         // Button's text will be the number.
         this.element.textContent = number;
-
-        // Random color for each button.
-        this.element.style.backgroundColor = this.getRandomColor();
+        
+        this.element.classList.add('gameButton');
 
         // Event listener for button click.
         this.element.addEventListener('click', this.onClick.bind(this));
@@ -59,10 +60,11 @@ class Button {
 
             // If the next expected number is greater than the number of buttons, the game is over.
             if (Button.nextExpected > Button.buttonsCount) {
-                alert(excellentMemoryAlert)
+                alert(excellentMemoryAlert);
             }
         } else {
             alert(wrongOrderAlert);
+            Button.resetGame();
         }
     }
 
@@ -139,7 +141,7 @@ function createForm() {
 
     // Form HTML
     formContainer.innerHTML = `
-        <p>How many buttons to create?</p>
+        <p>How many buttons to create? (Minimum 3, Maximum 7)</p>
         <form id="buttonForm">
             <input type="text" id="numButtons">
             <input type="submit" value="Go!" id="submitButton">
