@@ -29,12 +29,13 @@ class Button {
         this.element.classList.add('gameButton');
 
         // Event listener for button click.
-        this.element.addEventListener('click', this.onClick.bind(this));
+        this.onClickHandler = this.onClick.bind(this);
+        this.element.addEventListener('click', this.onClickHandler);
     }
 
     /**
-     * Event Listener for the button when it's clicked.
-     */
+ * Event Listener for the button when it's clicked.
+ */
     onClick() {
         if (this.number === Game.nextExpected) {
             // If the button is clicked in the correct order, the button's text will be the next expected number.
@@ -43,11 +44,16 @@ class Button {
 
             // If the next expected number is greater than the number of buttons, the game is over.
             if (Game.nextExpected > Game.buttonsCount) {
-                alert(Game.excellentMemoryAlert);
+                alert("Excellent Memory! You've clicked all buttons in the correct order.");
             }
         } else {
-            alert(Game.wrongOrderAlert);
+            alert("Wrong Order! Game Over. Please try again.");
             Game.resetGame();
         }
+    }
+
+
+    hideNumber() {
+        this.element.textContent = '';
     }
 }

@@ -10,8 +10,6 @@ class Game {
     static buttonsCount = 0;    // Number of buttons to be created (initial)
     static intervalId = null;   // Interval ID used for starting and resetting the game
     static buttons = [];        // Array of buttons
-    static excellentMemoryAlert = "Excellent Memory!"; // Excellent memory alert message
-    static wrongOrderAlert = "Wrong Order!"; // Wrong order alert message
 
     /**
      * Static function to reset the game
@@ -25,7 +23,7 @@ class Game {
 
         document.querySelectorAll('.gameButton').forEach(button => {
             button.style.display = 'none';
-            button.removeEventListener('click', button.onClick);
+            button.removeEventListener('click', button.onClickHandler);
         });
 
         document.getElementById('submitButton').disabled = false;
@@ -45,7 +43,11 @@ class Game {
             button.element.style.position = 'absolute';
             button.element.style.left = `${newX}px`;
             button.element.style.top = `${newY}px`;
+            button.hideNumber();
             button.element.style.display = 'block';
+
+            // Reattach the click event listener after scattering
+            button.element.addEventListener('click', button.onClickHandler);
         }
     }
 
@@ -63,9 +65,23 @@ class Game {
             Game.buttons.push(newButton);
         }
 
-        setTimeout(() => {
+        let scatterCount = 0; // Variable to keep track of scatter times
+
+        // Function to scatter buttons and check scatter count
+        function scatterAndCheck() {
             Game.scatterButtons();
-            Game.intervalId = setInterval(Game.scatterButtons, 2000);
+            scatterCount++;
+
+            if (scatterCount == 3) {
+                clearInterval(Game.intervalId); // Stop scattering after three times
+                Game.intervalId = null;
+            }
+        }
+
+        setTimeout(() => {
+            scatterAndCheck(); // Scatter initially
+
+            Game.intervalId = setInterval(scatterAndCheck, 2000);
         }, numButtons * 1000);
     }
 
