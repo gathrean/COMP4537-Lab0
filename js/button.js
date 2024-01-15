@@ -1,3 +1,9 @@
+// DISCLOSURE: I've used ChatGPT to get started with the following code, 
+// and I've fixed and tweaked it to make it work for this project along the way.
+
+// Along the way I've learned a lot about how OOP works in JavaScript.
+// Overall this was a solid Lab 0 / Warm-up project.
+
 /**
  * Button class
  */
