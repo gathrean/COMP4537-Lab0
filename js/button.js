@@ -34,8 +34,9 @@ class Button {
     }
 
     /**
- * Event Listener for the button when it's clicked.
- */
+     * Event Listener for the button when it's clicked.
+     * It also depends on when the button is clicked.
+     */
     onClick() {
         if (this.number === Game.nextExpected) {
             // If the button is clicked in the correct order, the button's text will be the next expected number.
@@ -62,15 +63,22 @@ class Button {
         }
     }
 
-
+    /**
+     * Hide the button's number by setting the text to an empty string.
+     * I use this when the buttons are scattering
+     */
     hideNumber() {
         this.element.textContent = '';
     }
 
+    /**
+     * Show the button's number by setting the text to the number.
+     * I use this after an alert
+     */
     showNumber() {
         Game.buttons.forEach(button => {
             button.element.textContent = button.number;
         });
     }
-    
+
 }
