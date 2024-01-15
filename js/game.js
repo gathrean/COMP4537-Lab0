@@ -128,7 +128,7 @@ function createForm() {
             Game.startGame(numButtons);
             formContainer.style.display = 'none';
         } else {
-            alert("Invalid number. Please enter a number between 3 and 7.");
+            alert(invalidNumberAlert);
         }
     });
 }

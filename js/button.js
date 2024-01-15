@@ -44,7 +44,7 @@ class Button {
 
             // If the next expected number is greater than the number of buttons, the game is over.
             if (Game.nextExpected > Game.buttonsCount) {
-                alert("Excellent Memory! You've clicked all buttons in the correct order.");
+                alert(excellentMemoryAlert);
                 this.showNumber();
 
                 setTimeout(() => {
@@ -52,7 +52,7 @@ class Button {
                 }, 3000);
             }
         } else {
-            alert("Wrong Order! Game Over. Please try again.");
+            alert(wrongOrderAlert);
 
             this.showNumber();
 
